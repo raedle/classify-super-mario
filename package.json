@@ -1,6 +1,6 @@
 {
   "name": "@raedle/classify-super-mario",
-  "version": "0.0.1-alpha.10",
+  "version": "0.0.1-alpha.11",
   "description": "Classify Super Mario Characters with PyTorch Live",
   "author": "Roman Rädle",
   "license": "MIT",
@@ -14,10 +14,10 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "@pytorchlive/media": "^0.0.1-alpha.2",
-    "@pytorchlive/torch": "^0.0.1-alpha.2",
-    "@pytorchlive/vision": "^0.0.1-alpha.4",
-    "react-native-pytorch-core": "^0.0.0-02142022-1202-81f499b71"
+    "@pytorchlive/media": "^0.0.1-alpha.3",
+    "@pytorchlive/torch": "^0.0.1-alpha.3",
+    "@pytorchlive/vision": "^0.0.1-alpha.6",
+    "react-native-pytorch-core": "^0.0.0-03022022-0110-fb998f8eb"
   },
   "devDependencies": {
     "@types/node": "^17.0.18",
