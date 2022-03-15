@@ -10,10 +10,7 @@ const MODEL_URL = 'https://github.com/raedle/classify-super-mario/releases/downl
 const normalizeFunc = T.normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]);
 const resizeFunc = T.resize(224);
 
-// Super Mario character classifiction model
 let model: any = null;
-
-// Load TorchScript Lite Interpreter model
 export async function loadModel(loaderFunc?: (url: string) => Promise<string>) {
   // Model already loaded
   if (model != null) {
@@ -26,60 +23,61 @@ export async function loadModel(loaderFunc?: (url: string) => Promise<string>) {
   else {
     filePath = await ModelLoader.download(MODEL_URL);
   }
-  model = torch.jit._load_for_mobile(filePath);
+  model = await torch.jit._load_for_mobile_async(filePath);
 }
 
-/**
- * Classify the Super Mario character in an input image.
- *
- * @param image An input image with a Super Mario character
- * @returns The name of the Super Mario character
- */
-export function classifyCharacter(image: Image) {
-  if (model == null) {
-    throw new Error('Model not loaded. Call "await loadModel()" function');
-  }
-
-  // Image width and height
+async function classifyImageInternal(image: Image, func: (tensor: any) => Promise<any>) {
   const width = image.getWidth();
   const height = image.getHeight();
 
   // Convert image to blob
   const blob = media.toBlob(image);
 
-  // Get tensor from image blob in [H, W, C]
-  let tensor = torch.fromBlob(blob, [height, width, 3]);
+  // Get tensor from image blob
+  let tensor = torch.fromBlob(blob, [height, width, 3]); // [HWC]
 
-  // Permute to [C, H, W]
-  tensor = torch.permute(tensor, [2, 0, 1]);
+  // Permute
+  tensor = torch.permute(tensor, [2, 0, 1]); // [CHW]
 
-  // Div tensor to have values from [0, 1]
+  // Div
   tensor = tensor.div(255);
 
-  // Normalize image tensor data
+  // Normalize
   tensor = normalizeFunc(tensor);
 
-  // CenterCrop image tensor [3, min(H, W), min(H, W)]
+  // CenterCrop
   const centerCropFunc = T.centerCrop(
     Math.min(image.getWidth(), image.getHeight())
   );
   tensor = centerCropFunc(tensor);
 
-  // Unsqueeze to [1, 3, min(H, W), min(H, W)]
-  tensor = tensor.unsqueeze(0);
+  // Unsqueeze
+  tensor = tensor.unsqueeze(0); // [1, 3, 480, 480]
 
-  // Resize to [1, 3, 224, 224]
+  // Resize
   tensor = resizeFunc(tensor);
 
-  // Run model inference
-  const result = model.forward(tensor);
-
-  // Get result [1, 5] -> 5 characters
+  const result = await func(tensor);
   const resultTensor = result.toTensor();
-
-  // Get index for character with higher probability
   const maxIdx = torch.argmax(resultTensor);
 
-  // Return character name
   return CharacterClasses[maxIdx];
+}
+
+export async function classifyCharacterSync(image: Image) {
+  if (model == null) {
+    throw new Error("model not loaded");
+  }
+  return classifyImageInternal(image, async(tensor: any) => {
+    return model.forward(tensor);
+  });
+}
+
+export async function classifyCharacter(image: Image) {
+  if (model == null) {
+    throw new Error("model not loaded");
+  }
+  return classifyImageInternal(image, async (tensor: any) => {
+    return model.forwardAsync(tensor);
+  });
 }

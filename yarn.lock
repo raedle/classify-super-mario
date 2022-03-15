@@ -2,20 +2,24 @@
 # yarn lockfile v1
 
 
-"@pytorchlive/media@^0.0.1-alpha.3":
-  version "0.0.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@pytorchlive/media/-/media-0.0.1-alpha.3.tgz#3592434f495992f08a444c082bd12eb02b3b7a5c"
-  integrity sha512-9AyNguoYQPA7/cCVemcUtSkxlq6d81PfiHt385uaZNfVUTwwy2RwoOfaZ/K04qJ1/JIM+ExTKDss1s6h+RNGyQ==
+"@pytorchlive/media@^0.0.1-alpha.4":
+  version "0.0.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/@pytorchlive/media/-/media-0.0.1-alpha.4.tgz#a3bf864e8dd52ac3381b1ed34a405084b1a92164"
+  integrity sha512-SzEtt65YHYK2R8YjUC0nnJThJgHpZVcD9R/OIAJopZ49TL2JnDBObh52BzzmhbqAfedPrvE5Gbg5GK+t1WoOpQ==
+  dependencies:
+    react-native-pytorch-core "^0.0.0-03142022-1208-58ecf7982"
 
-"@pytorchlive/torch@^0.0.1-alpha.3":
-  version "0.0.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@pytorchlive/torch/-/torch-0.0.1-alpha.3.tgz#39965f1acbd52a700ae788805c6f537eeecdec99"
-  integrity sha512-GiedgVc855DYiiPjXiqnFHYviuwSHFNuAYtwc4Zt5DOW0qkEQQiuqbO/vyVjvPdaSXWnz/KRxJoLQU2VWGfZMw==
+"@pytorchlive/torch@^0.0.1-alpha.7":
+  version "0.0.1-alpha.7"
+  resolved "https://registry.yarnpkg.com/@pytorchlive/torch/-/torch-0.0.1-alpha.7.tgz#9e20b54af69cfd78584038142db50b1a20ac4e22"
+  integrity sha512-y6c66AagMa3PDgLhMETZoUTHxkUWbeMYKfM92b+l0uq6v4OWvc4a9/CtawwDCmKo1EejB961b8daus6iRUzoKw==
 
-"@pytorchlive/vision@^0.0.1-alpha.6":
-  version "0.0.1-alpha.6"
-  resolved "https://registry.yarnpkg.com/@pytorchlive/vision/-/vision-0.0.1-alpha.6.tgz#b10e9f48c43cc75a7fd11bd4f64b545a9d041b11"
-  integrity sha512-A6oNk/q9DP1SJeWrqYHDO81ASUDEb27Gnx3gUIqCAj8BYOvy5PbyD+4QiIqolBiJ+34wPi5d3zZYZxhp3+xyFg==
+"@pytorchlive/vision@^0.0.1-alpha.10":
+  version "0.0.1-alpha.10"
+  resolved "https://registry.yarnpkg.com/@pytorchlive/vision/-/vision-0.0.1-alpha.10.tgz#35dc612e03a608178c5309275b4afe14fead22dd"
+  integrity sha512-6vwovpFy01n8RT1V8ejW9HZTPaMpYVdRO1BAKvZLcQZRLSppm4jJbz7yoSv13/YB/D28DKyXxiSd+DHSd3jllA==
+  dependencies:
+    "@pytorchlive/torch" "^0.0.1-alpha.7"
 
 "@types/node@^17.0.18":
   version "17.0.18"
@@ -26,6 +30,11 @@ react-native-pytorch-core@^0.0.0-03022022-0110-fb998f8eb:
   version "0.0.0-03022022-0110-fb998f8eb"
   resolved "https://registry.yarnpkg.com/react-native-pytorch-core/-/react-native-pytorch-core-0.0.0-03022022-0110-fb998f8eb.tgz#b6f4ef7da424aafacd8095a5c227ba70ba45ab5f"
   integrity sha512-RErgLkEFHRDUpb61PaFgc14ehajEtb8gOfNh3hfVQ7MNwJLUvJwh6QYlyhTvK6GOPtEMRlHNjzRxuRQ9wtW9Jw==
+
+react-native-pytorch-core@^0.0.0-03142022-1208-58ecf7982:
+  version "0.0.0-12312021-1202-2282cd529"
+  resolved "https://registry.yarnpkg.com/react-native-pytorch-core/-/react-native-pytorch-core-0.0.0-12312021-1202-2282cd529.tgz#344b76abe43527c5cb0fb7a55e606e43a4158237"
+  integrity sha512-t66DkBAOkhTA6639nzBVXVoMvwWkjd+o6sbe+PeyF9BHGWx/e4WNhpUSLUHmEcMdN7EL2qnkCO6oGqsCzsfhsA==
 
 typescript@^4.5.5:
   version "4.5.5"
